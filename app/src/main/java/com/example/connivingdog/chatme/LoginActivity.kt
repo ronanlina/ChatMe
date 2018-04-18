@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -57,6 +58,7 @@ class LoginActivity : AppCompatActivity() {
 
     //signing in the user
     private fun logIn(){
+        Toast.makeText(this,"Signing in...",Toast.LENGTH_LONG).show()
 
         var email: String = emailLogText.text.toString()
         var password: String = passwordLogText.text.toString()
@@ -64,8 +66,13 @@ class LoginActivity : AppCompatActivity() {
         fbAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
             if(task.isSuccessful){
                 //TODO start intent home activity
+                Toast.makeText(this,"Welcome!",Toast.LENGTH_LONG).show()
+                var intent = Intent(this, HomeActivity::class.java)
+                intent.putExtra("email",email)
+                startActivity(intent)
             }else{
                 //TODO prompt
+                Toast.makeText(this,"Login error: please check your connection.",Toast.LENGTH_LONG).show()
             }
         })
     }
