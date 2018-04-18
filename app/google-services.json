@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "338218120838",
+    "firebase_url": "https://chatme-5009c.firebaseio.com",
+    "project_id": "chatme-5009c",
+    "storage_bucket": "chatme-5009c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338218120838:android:0c857721f102d2b3",
+        "android_client_info": {
+          "package_name": "com.example.connivingdog.chatme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338218120838-85mfck8tqnipt79r66m5uvs1geaeclmb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDj0bp3iztOrkbn7EYrSACvz2qIm1SNUxo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

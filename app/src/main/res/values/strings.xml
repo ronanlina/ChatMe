@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Chat.Me</string>
+    <string name="email_textview">Email</string>
+    <string name="password_textview">Password</string>
+    <string name="email_hint">enter your email</string>
+    <string name="login_button">Log In</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="or">- OR -</string>
+    <string name="add_username">Username</string>
+    <string name="email_add_hint">example@domain.com</string>
+
+</resources>
