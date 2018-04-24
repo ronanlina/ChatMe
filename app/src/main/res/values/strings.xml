@@ -8,5 +8,6 @@
     <string name="or">- OR -</string>
     <string name="add_username">Username</string>
     <string name="email_add_hint">example@domain.com</string>
+    <string name="title_activity_home">HomeActivity</string>
 
 </resources>

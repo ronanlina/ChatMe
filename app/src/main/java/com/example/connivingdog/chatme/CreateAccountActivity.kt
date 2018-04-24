@@ -75,6 +75,7 @@ class CreateAccountActivity : AppCompatActivity() {
         }
     }
 
+    //validation methods
     private fun isEmailValid(): Boolean{
         if(aEmailText.text.contains("@")){
             return true

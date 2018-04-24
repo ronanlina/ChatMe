@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener{view ->
             //TODO FirebaseAuth sign in method
-            attemptLogIn();
+            attemptLogIn()
         }
 
         signupButton.setOnClickListener {view ->
