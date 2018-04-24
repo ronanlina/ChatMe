@@ -23,7 +23,7 @@
         android:id="@+id/passwordLogText"
         android:layout_width="267dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,20 +50,23 @@
         android:layout_height="wrap_content"
         android:text="@string/password_textview"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/passwordLogText"
-        tools:layout_editor_absoluteY="198dp" />
+        app:layout_constraintBottom_toTopOf="@+id/passwordLogText"
+        app:layout_constraintStart_toStartOf="@+id/passwordLogText" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="254dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:backgroundTint="?attr/colorAccent"
         android:text="@string/login_button"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/signupButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLogText"
+        app:layout_constraintVertical_bias="0.71" />
 
     <Button
         android:id="@+id/signupButton"
@@ -75,6 +78,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.615" />
+        app:layout_constraintVertical_bias="0.69" />
 
 </android.support.constraint.ConstraintLayout>
