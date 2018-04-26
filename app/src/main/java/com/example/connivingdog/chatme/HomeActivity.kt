@@ -21,21 +21,17 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        var account: UserAccount
         var mAdapter: UserAccountAdapter
 
         var email: String = getEmail()
         mDatabaseReference.child("users").addValueEventListener( object : ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if(dataSnapshot!=null){
-                    account = dataSnapshot.getValue(UserAccount::class.java)!!
-                    //Log.d("DSNS", account!!.email)
+                dataSnapshot.children.forEach{
+                    var account = it.getValue(UserAccount::class.java)!!
+                    Log.d("DSNS", account.email)
                     if (!account.email.equals(email)) { // the '!=' equivalent query
                         mDataList.add(account)
                     }
-                }
-                else{
-                    Toast.makeText(this@HomeActivity,"null",Toast.LENGTH_SHORT)
                 }
             }
 
