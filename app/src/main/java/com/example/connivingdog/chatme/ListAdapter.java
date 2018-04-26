@@ -2,6 +2,7 @@ package com.example.connivingdog.chatme;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,9 @@ public class ListAdapter extends BaseAdapter {
     private ChildEventListener mListener = new ChildEventListener() {
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-            if(!dataSnapshot.getValue(UserAccount.class).getEmail().equals(email)) { // the '!=' equivalent query
+            UserAccount account = dataSnapshot.getValue(UserAccount.class);
+            Log.d("DSNS",account.getEmail());
+            if(!account.getEmail().equals(email)){ // the '!=' equivalent query
                 mSnapshotList.add(dataSnapshot);
                 notifyDataSetChanged();
             }

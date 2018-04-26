@@ -8,23 +8,23 @@
 
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
-        android:layout_width="358dp"
+        android:layout_width="292dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
-        android:imeOptions="actionSearch"
 
+        android:imeOptions="actionSearch"
         android:inputType="text"
         android:singleLine="true"
-        android:text="AutoCompleteTextView"
 
+        android:text="AutoCompleteTextView"
         app:layout_constraintBottom_toTopOf="@+id/userMessageList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/userMessageList"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -35,4 +35,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" />
+
 </android.support.constraint.ConstraintLayout>
