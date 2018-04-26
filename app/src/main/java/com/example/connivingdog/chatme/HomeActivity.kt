@@ -1,9 +1,11 @@
 package com.example.connivingdog.chatme
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.widget.Adapter
 import android.widget.Toast
 import com.google.firebase.database.*
@@ -12,35 +14,29 @@ import kotlinx.android.synthetic.main.activity_home.*
 class HomeActivity : AppCompatActivity() {
 
     private var mDatabaseReference: DatabaseReference = FirebaseDatabase.getInstance().reference
+    private var mAdapter: ListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        var email: String = getEmail()
 
-        try {
-            mDatabaseReference.child("users").orderByChild("email").equalTo(email)
-            mDatabaseReference.addValueEventListener( object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    dataSnapshot.children.forEach{
-                        var userAccount: UserAccount = it.getValue(UserAccount::class.java)!!
-                        var email: String = userAccount.email
-                        var mAdapter = UserListAdapter(mDatabaseReference, this@HomeActivity,email)
-                        userMessageList.adapter = mAdapter
-                    }
-                }
-                override fun onCancelled(databaseError: DatabaseError) {
-                    println("loadPost:onCancelled ${databaseError.toException()}")
-                }
-            })
-        }
-        catch (e: NullPointerException){
-            Toast.makeText(this,"NULL",Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun getEmail(): String{
-        var intent: Intent = getIntent()
+        var intent: Intent = intent
             return intent.getStringExtra("email")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        var email: String = getEmail()
+
+        mAdapter = ListAdapter(mDatabaseReference,this@HomeActivity,email)
+        userMessageList.adapter = mAdapter
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mAdapter!!.cleanup()
     }
 }

@@ -12,7 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
+        android:imeOptions="actionSearch"
+
+        android:inputType="text"
+        android:singleLine="true"
         android:text="AutoCompleteTextView"
+
         app:layout_constraintBottom_toTopOf="@+id/userMessageList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"

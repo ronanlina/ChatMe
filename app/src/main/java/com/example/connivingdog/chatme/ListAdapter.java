@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -17,17 +18,20 @@ import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
-public class UserListAdapter extends BaseAdapter{
+public class ListAdapter extends BaseAdapter {
 
     private DatabaseReference mDatabaseReference;
     private Activity mActivity;
     private ArrayList<DataSnapshot> mSnapshotList;
-    private Query query;
+    private String email;
 
     private ChildEventListener mListener = new ChildEventListener() {
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
+            if(!dataSnapshot.getValue(UserAccount.class).getEmail().equals(email)) { // the '!=' equivalent query
+                mSnapshotList.add(dataSnapshot);
+                notifyDataSetChanged();
+            }
         }
 
         @Override
@@ -51,11 +55,11 @@ public class UserListAdapter extends BaseAdapter{
         }
     };
 
-    public UserListAdapter(DatabaseReference databaseReference, Activity activity, String currentUserEmail) {
+    public ListAdapter(DatabaseReference databaseReference, Activity activity, String currentUserEmail) {
         mActivity = activity;
+        email = currentUserEmail;
         mDatabaseReference = databaseReference.child("users");
-        query = mDatabaseReference.orderByChild("username").equalTo(currentUserEmail);
-        query.addChildEventListener(mListener);
+        mDatabaseReference.addChildEventListener(mListener);
         mSnapshotList = new ArrayList<>();
     }
 
@@ -73,7 +77,6 @@ public class UserListAdapter extends BaseAdapter{
     @Override
     public UserAccount getItem(int i) {
         DataSnapshot snapshot = mSnapshotList.get(i);
-
         return snapshot.getValue(UserAccount.class);
     }
 
@@ -99,11 +102,16 @@ public class UserListAdapter extends BaseAdapter{
         final UserAccount account = getItem(i);
         final ViewHolder holder = (ViewHolder) view.getTag();
 
-        String username = account.getUsername();
-        String email = account.getEmail();
+            String username = account.getUsername();
+            String email = account.getEmail();
 
-        holder.userText.setText(username);
-        holder.emailText.setText(email);
+            holder.userText.setText(username);
+            holder.emailText.setText(email);
+
         return view;
+    }
+
+    public void cleanup(){
+        mDatabaseReference.removeEventListener(mListener);
     }
 }
